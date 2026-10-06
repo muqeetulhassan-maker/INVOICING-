@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark mode is the default */
+    --color-background: #08080A;
+    --color-surface: #111114;
+    --color-surface-raised: #17171B;
+    --color-border: #232328;
+    --color-border-strong: #2E2E35;
+    --color-text-primary: #F2F2F5;
+    --color-text-secondary: #A5A5AF;
+    --color-text-muted: #6B6B74;
+    --color-accent: #7C5CFF;
+    --color-accent-hover: #8F72FF;
+    --color-accent-muted: #1C1730;
+    --color-success: #34D399;
+    --color-success-bg: #0F2A21;
+    --color-warning: #FBBF24;
+    --color-warning-bg: #2E2510;
+    --color-danger: #F87171;
+    --color-danger-bg: #2E1616;
+    --color-info: #60A5FA;
+    --color-info-bg: #142335;
+
+    --glow-accent: 0 0 0 1px rgba(124, 92, 255, 0.4), 0 0 24px rgba(124, 92, 255, 0.25);
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.25);
+
+    --accent-color: var(--color-accent);
+    --text-primary: var(--color-text-primary);
+  }
+
+  [data-theme="light"] {
+    --color-background: #FAFAFC;
+    --color-surface: #FFFFFF;
+    --color-surface-raised: #FFFFFF;
+    --color-border: #E4E3EA;
+    --color-border-strong: #D2D1DA;
+    --color-text-primary: #16151C;
+    --color-text-secondary: #5C5B66;
+    --color-text-muted: #8B8A94;
+    --color-accent: #6C4CF1;
+    --color-accent-hover: #5B3ADB;
+    --color-accent-muted: #EFEBFF;
+    --color-success: #16A34A;
+    --color-success-bg: #EAF7EE;
+    --color-warning: #D97706;
+    --color-warning-bg: #FDF3E4;
+    --color-danger: #DC2626;
+    --color-danger-bg: #FBEAEA;
+    --color-info: #2563EB;
+    --color-info-bg: #EAF1FE;
+
+    --glow-accent: 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
+
+    --accent-color: var(--color-accent);
+    --text-primary: var(--color-text-primary);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.015em;
+  }
+
+  button, input, optgroup, select, textarea {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Geist', system-ui, sans-serif;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .font-mono {
+    font-family: 'Geist Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum', 'zero';
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Global Interactive Icon & Hover Utilities */
+@layer utilities {
+  /* Interactive icon hover with smooth scale and color change */
+  .icon-interactive {
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), color 0.18s ease;
+  }
+  .icon-interactive:hover,
+  .group:hover .group-hover\:icon-interactive {
+    transform: scale(1.18);
+    color: var(--accent-color);
+  }
+
+  /* Interactive text/label hover with subtle font size refinement */
+  .label-interactive {
+    transition: color 0.18s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .group:hover .group-hover\:label-interactive {
+    color: var(--text-primary);
+    transform: translateX(2px);
+  }
+
+  /* Interactive Brand Logo Color Morphing */
+  .brand-logo-interactive {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .brand-logo-interactive:hover {
+    animation: brandColorShift 3s ease infinite alternate;
+    transform: scale(1.1) rotate(4deg);
+    box-shadow: 0 0 24px rgba(124, 92, 255, 0.65), 0 0 10px rgba(52, 211, 153, 0.5);
+  }
+}
+
+@keyframes brandColorShift {
+  0% {
+    background: linear-gradient(135deg, #7C5CFF 0%, #9B82FF 50%, #60A5FA 100%);
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.7);
+  }
+  33% {
+    background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 50%, #3B82F6 100%);
+    box-shadow: 0 0 22px rgba(236, 72, 153, 0.7);
+  }
+  66% {
+    background: linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #7C5CFF 100%);
+    box-shadow: 0 0 22px rgba(16, 185, 129, 0.7);
+  }
+  100% {
+    background: linear-gradient(135deg, #F59E0B 0%, #EF4444 50%, #8B5CF6 100%);
+    box-shadow: 0 0 22px rgba(245, 158, 11, 0.7);
+  }
+}
+
+/* Smooth transitions default */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D8D4C8;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BCB8AE;
+}
+
+/* Print Styles for Invoice Modal */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print\:p-0,
+  .print\:p-0 * {
+    visibility: visible;
+  }
+  .print\:p-0 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px !important;
+  }
+}
